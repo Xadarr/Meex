@@ -1,9 +1,14 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { AppService } from './app.service';
 
+
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  // @ts-ignore
+  constructor(
+    private readonly appService: AppService,
+  ) {}
+
 
   @Get()
   getHello(): string {
@@ -15,8 +20,17 @@ export class AppController {
   }
 
   @Post('/api/submitForm')
-  submitForm(@Body() data: any): string {
+  async submitForm(@Body() data: any): Promise<any> {
     console.log(data);
-    return `{"status": "OK"}`;
+    try {
+      // const paint = new this.paintModel(data);
+      // await paint.save();
+      // return { message: 'Paint created successfully', paint };
+      return { data: data}
+    } catch (error) {
+      console.error('Error creating paint:', error);
+      return { message: 'Error creating paint', error };
+    }
+
   }
 }
