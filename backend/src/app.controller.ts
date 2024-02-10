@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { AppService } from './app.service';
 
 @Controller()
@@ -11,6 +11,12 @@ export class AppController {
   }
   @Get('/api/health')
   checkHealth(): string {
+    return `{"status": "OK"}`;
+  }
+
+  @Post('/api/submitForm')
+  submitForm(@Body() data: any): string {
+    console.log(data);
     return `{"status": "OK"}`;
   }
 }
