@@ -2,7 +2,7 @@
 //
 const submitForm = async (data: any) => {
     try {
-        const response = await fetch('http://localhost:5000/api/submitForm', {
+        const response = await fetch('http://localhost:5000/paint', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
